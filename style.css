@@ -89,7 +89,6 @@ DESCRIPTION: One centered column with no sidebar
 
 .one-column #content {
 	margin: 0 auto;
-	width: 640px;
 }
 
 /*
