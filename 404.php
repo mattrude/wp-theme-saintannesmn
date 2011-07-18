@@ -1,30 +1,29 @@
-<?php
-/**
- * The template for displaying 404 pages (Not Found).
- *
- * @package WordPress
- * @subpackage Twenty_Ten
- * @since Twenty Ten 1.0
- */
+<?php get_header(); ?>
 
-get_header(); ?>
+	<div id="content">
+		<div class="padder">
 
-	<div id="container">
-		<div id="content" role="main">
+		<?php do_action( 'bp_before_404' ) ?>
 
-			<div id="post-0" class="post error404 not-found">
-				<h1 class="entry-title"><?php _e( 'Not Found', 'twentyten' ); ?></h1>
-				<div class="entry-content">
-					<p><?php _e( 'Apologies, but the page you requested could not be found. Perhaps searching will help.', 'twentyten' ); ?></p>
-					<?php get_search_form(); ?>
-				</div><!-- .entry-content -->
-			</div><!-- #post-0 -->
+		<div class="page 404">
 
-		</div><!-- #content -->
-	</div><!-- #container -->
-	<script type="text/javascript">
-		// focus on search field after it has loaded
-		document.getElementById('s') && document.getElementById('s').focus();
-	</script>
+			<h2 class="pagetitle"><?php _e( 'Page Not Found', 'buddypress' ) ?></h2>
+
+			<div id="message" class="info">
+
+				<p><?php _e( 'The page you were looking for was not found.', 'buddypress' ) ?>
+
+			</div>
+
+			<?php do_action( 'bp_404' ) ?>
+
+		</div>
+
+		<?php do_action( 'bp_after_404' ) ?>
+
+		</div><!-- .padder -->
+	</div><!-- #content -->
+
+	<?php locate_template( array( 'sidebar.php' ), true ) ?>
 
 <?php get_footer(); ?>

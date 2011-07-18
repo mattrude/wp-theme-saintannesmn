@@ -1,44 +1,38 @@
-<?php
-/**
- * The template for displaying all pages.
- *
- * This is the template that displays all pages by default.
- * Please note that this is the wordpress construct of pages
- * and that other 'pages' on your wordpress site will use a
- * different template.
- *
- * @package WordPress
- * @subpackage Twenty_Ten
- * @since Twenty Ten 1.0
- */
+<?php get_header() ?>
 
-get_header(); ?>
+	<div id="content">
+		<div class="padder">
 
-		<div id="container">
-			<div id="content" role="main">
+		<?php do_action( 'bp_before_blog_page' ) ?>
 
-<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+		<div class="page" id="blog-page">
 
-				<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-					<?php if ( is_front_page() ) { ?>
-						<h2 class="entry-title"><?php the_title(); ?></h2>
-					<?php } else { ?>	
-						<h1 class="entry-title"><?php the_title(); ?></h1>
-					<?php } ?>				
+			<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-					<div class="entry-content">
-						<?php the_content(); ?>
-						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
-						<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="edit-link">', '</span>' ); ?>
-					</div><!-- .entry-content -->
-				</div><!-- #post-## -->
+				<h2 class="pagetitle"><?php the_title(); ?></h2>
 
-				<?php comments_template( '', true ); ?>
+				<div class="post" id="post-<?php the_ID(); ?>">
 
-<?php endwhile; ?>
+					<div class="entry">
 
-			</div><!-- #content -->
-		</div><!-- #container -->
+						<?php the_content( __( '<p class="serif">Read the rest of this page &rarr;</p>', 'buddypress' ) ); ?>
 
-<?php get_sidebar(); ?>
+						<?php wp_link_pages( array( 'before' => __( '<p><strong>Pages:</strong> ', 'buddypress' ), 'after' => '</p>', 'next_or_number' => 'number')); ?>
+						<?php edit_post_link( __( 'Edit this entry.', 'buddypress' ), '<p>', '</p>'); ?>
+
+					</div>
+
+				</div>
+
+			<?php endwhile; endif; ?>
+
+		</div><!-- .page -->
+
+		<?php do_action( 'bp_after_blog_page' ) ?>
+
+		</div><!-- .padder -->
+	</div><!-- #content -->
+
+	<?php locate_template( array( 'sidebar.php' ), true ) ?>
+
 <?php get_footer(); ?>
